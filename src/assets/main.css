@@ -1,0 +1,128 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/DMSans-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/DMSans-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/DMSans-Regular.woff2') format('woff2');
+}
+
+@theme {
+  /* Шрифты */
+  --font-family: 'DM Sans', sans-serif;
+
+  /* Цвета */
+  --color-primary-error: #ff8282;
+  --color-neutral-800: #170f49;
+  --color-neutral-700: #514f6e;
+  --color-neutral-600: #6f6c90;
+  --color-neutral-500: #a0a3bd;
+  --color-neutral-400: #d9dbe9;
+  --color-neutral-300: #eff0f6;
+  --color-neutral-200: #f7f7fb;
+  --color-neutral-100: #fff;
+  --color-primary-color-1: #4a3aff;
+  --color-primary-color-2: #962dff;
+  --color-secondary-color-1: #f3f1ff;
+
+  /* Тени */
+  --shadow-3-7-inset: inset 0 -3px 7px 0 rgba(20, 20, 43, 0.08);
+  --shadow-2-6: 0 2px 6px 0 rgba(19, 18, 66, 0.07);
+  --shadow-3-12: 0 3px 12px 0 rgba(74, 58, 255, 0.18);
+  --shadow-4-10: 0 4px 10px 0 rgba(31, 37, 89, 0.07), 0 2px 11px 0 rgba(69, 65, 164, 0.06);
+  --shadow-4-10-error: 0 4px 10px 0 #ff00005c;
+  --shadow-5-16: 0 5px 16px 0 rgba(8, 15, 52, 0.06);
+  --shadow-8-25: 0 8px 25px 0 rgba(13, 10, 44, 0.06);
+
+  /* Медиа запросы */
+  --breakpoint-lg: 67.5rem;
+}
+
+@layer base {
+  body {
+    @apply font-family text-neutral-600 bg-gray-100;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+@layer components {
+  /* Кнопки */
+
+  .buttonBase {
+    @apply flex lg:shrink-0 items-center justify-center transition-all duration-500 ease-out cursor-pointer;
+  }
+
+  .buttonPrimary {
+    @apply bg-primary-color-1 hover:bg-primary-color-2 disabled:hover:bg-primary-color-1 text-center text-neutral-100 shadow-3-12 rounded-[56px] leading-[111%];
+  }
+
+  .buttonSecondary {
+    @apply text-primary-color-1 hover:text-primary-color-2 text-center rounded-[66px] border border-primary-color-1 hover:border-primary-color-2;
+  }
+
+  /* Формы */
+
+  input {
+    @apply outline-none;
+  }
+
+  input:focus {
+    @apply outline-none;
+  }
+  .input-error {
+    @apply ring-offset-1 ring-2 ring-red-300;
+  }
+  .input-error:focus {
+    @apply ring-red-400  ring-offset-red-600;
+  }
+
+  /*Текст */
+
+  .title-24-700 {
+    @apply lg:text-2xl md:text-xl text-lg font-bold leading-[146%];
+  }
+
+  .title-18-700 {
+    @apply lg:text-lg font-bold leading-[111%];
+  }
+
+  .title-18-500 {
+    @apply text-sm sm:text-base lg:text-lg font-medium leading-[111%];
+  }
+
+  .title-18-400_167 {
+    @apply text-sm sm:text-base lg:text-lg leading-[167%];
+  }
+
+  .title-18-400_111 {
+    @apply lg:text-lg leading-[111%];
+  }
+}
+
+/*Текст доп. */
+@utility title-34-700 {
+  @apply lg:text-[34px] text-2xl md:text-3xl  font-bold leading-[135%];
+}
