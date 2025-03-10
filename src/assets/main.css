@@ -99,6 +99,18 @@
     @apply ring-red-400  ring-offset-red-600;
   }
 
+  /* Прогресс бар, вид номера */
+  .baseNumber {
+    @apply flex shrink-0 justify-center items-center size-[34px] rounded-full;
+  }
+
+  .currentNumber {
+    @apply bg-primary-color-1 text-neutral-100;
+  }
+  .notCurrentNumber {
+    @apply bg-neutral-300 text-neutral-600;
+  }
+
   /*Текст */
 
   .title-24-700 {
@@ -119,6 +131,10 @@
 
   .title-18-400_111 {
     @apply lg:text-lg leading-[111%];
+  }
+
+  .title-16-500 {
+    @apply text-sm sm:text-base font-medium;
   }
 }
 

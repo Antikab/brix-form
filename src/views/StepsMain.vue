@@ -8,6 +8,7 @@ import Step_2 from '@/views/Step_2.vue'
 import Step_3 from '@/views/Step_3.vue'
 import Step_4 from '@/views/Step_4.vue'
 import BaseButton from '@/components/BaseButton.vue'
+import StepProgressBar from '@/components/StepProgressBar.vue'
 
 // Текущий шаг формы
 const currentStep = ref(1)
@@ -95,6 +96,7 @@ const handleSubmit = async () => {
     <div
       class="lg:h-[606px] h-[690px] min-w-[calc(100%-32px)] mt-7 pt-5 pb-12 px-1.5 lg:mt-[42px] lg:py-[32px] lg:pl-[46px] lg:pr-[55px] bg-neutral-100 border border-neutral-300 rounded-[34px] shadow-5-16"
     >
+      <StepProgressBar :currentStep="currentStep" :totalSteps="4" />
       <Step_1 v-if="currentStep === 1" v-model="formData" :v="v$" />
       <Step_2 v-if="currentStep === 2" v-model="formData" :v="v$" />
       <Step_3 v-if="currentStep === 3" v-model="formData" :v="v$" />

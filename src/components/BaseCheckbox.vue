@@ -59,7 +59,7 @@ const handleInputChange = () => props.onTouch()
     <div
       :class="[
         classContainer,
-        'w-[284px] h-[114px] flex flex-wrap items-center gap-x-[23px] p-4  border-2 rounded-2xl transition-all  peer-checked:border-primary-color-1 peer-checked:shadow-4-10 shadow-2-6'
+        'w-[215px] h-[105px] lg:w-[284px] lg:h-[114px] flex flex-wrap items-center gap-x-[23px] p-4  border-2 rounded-2xl transition-all  peer-checked:border-primary-color-1 peer-checked:shadow-4-10 shadow-2-6'
       ]"
     >
       <div class="size-[66px] bg-primary-color-1/15 rounded-full flex items-center justify-center">

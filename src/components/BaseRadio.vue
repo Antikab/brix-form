@@ -36,7 +36,7 @@ defineProps({
     <div
       :class="[
         classContainer,
-        'flex items-center gap-4 p-4 w-[284px] h-[114px] border-2 rounded-2xl transition-all  has-checked:border-primary-color-1 has-checked:shadow-4-10 shadow-2-6'
+        'w-[215px] h-[105px] lg:w-[284px] lg:h-[114px] flex items-center gap-4 p-4  border-2 rounded-2xl transition-all  has-checked:border-primary-color-1 has-checked:shadow-4-10 shadow-2-6'
       ]"
     >
       <input

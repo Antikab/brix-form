@@ -18,10 +18,10 @@ defineProps({
 
 <template>
   <div
-    class="flex flex-col gap-16 lg:gap-[78px] items-center justify-center lg:items-start lg:justify-start border-t border-neutral-400"
+    class="flex flex-col gap-16 lg:gap-[78px] items-center justify-center lg:items-start lg:justify-start"
   >
     <div class="flex flex-col lg:items-start justify-center gap-2">
-      <h2 class="mt-16 title-24-700 text-neutral-800">Contact details</h2>
+      <h2 class="title-24-700 text-neutral-800">Contact details</h2>
       <p class="title-18-400_167">Lorem ipsum dolor sit amet consectetur adipisc.</p>
     </div>
     <div

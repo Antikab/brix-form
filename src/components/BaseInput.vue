@@ -59,7 +59,7 @@ defineProps({
   },
   height: {
     type: String,
-    default: '50px',
+    default: '40px',
     required: false
   },
   srcImage: {
@@ -81,7 +81,9 @@ defineProps({
 </script>
 
 <template>
-  <div class="h-[66px] w-[284px] relative flex justify-between items-center gap-1 p-5 outline-none">
+  <div
+    class="h-[50px] lg:h-[66px] w-[284px] relative flex justify-between items-center gap-0.5 lg:gap-1 p-4 lg:p-5 outline-none"
+  >
     <TransitionGroup
       name="element"
       tag="div"
