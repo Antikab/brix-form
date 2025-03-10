@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue'
 import BaseCheckbox from '@/components/BaseCheckbox.vue'
 
 import IconDev from '/image/IconDev.svg'
@@ -6,17 +7,23 @@ import IconWeb from '/image/IconWeb.svg'
 import IconMar from '/image/IconMar.svg'
 import IconOth from '/image/IconOth.svg'
 
-const stepData = defineModel({
-  type: Object,
-  default: () => ({})
-})
-
-const { v } = defineProps({
+const props = defineProps({
+  modelValue: {
+    type: Array,
+    default: () => []
+  },
   v: Object // Валидация
 })
 
+const emit = defineEmits(['update:modelValue'])
+
+const localValue = computed({
+  get: () => props.modelValue,
+  set: (val) => emit('update:modelValue', val)
+})
+
 const touchValidate = () => {
-  v.checkboxValidate.$touch()
+  props.v.checkboxValidate.$touch()
 }
 </script>
 
@@ -25,14 +32,10 @@ const touchValidate = () => {
     <div class="flex flex-col lg:items-start justify-center gap-2">
       <h2 class="title-24-700 text-neutral-800">Our services</h2>
       <p class="w-[250px] lg:w-fit title-18-400_167">
-        <!-- Please select which service you are interested in. -->
+        Please select which service you are interested in.
       </p>
     </div>
-    <p>stepData.development: {{ stepData.development }}</p>
-    <p>stepData.webDesign: {{ stepData.webDesign }}</p>
-    <p>stepData.marketing: {{ stepData.marketing }}</p>
-    <p>stepData.other: {{ stepData.other }}</p>
-
+    <p class="text-red-500">проверка: {{ modelValue }}</p>
     <div
       class="flex flex-col gap-3.5 lg:flex-row lg:flex-wrap lg:justify-center lg:gap-7 lg:-mx-3.5 relative mt-7 lg:mt-10"
     >
@@ -55,7 +58,8 @@ const touchValidate = () => {
             : 'border-neutral-300'
         "
         :onTouch="touchValidate"
-        v-model="stepData.development"
+        v-model="localValue"
+        value="Development"
         id="development"
         name="development"
         label="Development"
@@ -68,7 +72,8 @@ const touchValidate = () => {
             : 'border-neutral-300'
         "
         :onTouch="touchValidate"
-        v-model="stepData.webDesign"
+        v-model="localValue"
+        value="Web Design"
         id="webDesign"
         name="webDesign"
         label="Web Design"
@@ -80,8 +85,8 @@ const touchValidate = () => {
             ? 'border-primary-error shadow-4-10-error'
             : 'border-neutral-300'
         "
-        :onTouch="touchValidate"
-        v-model="stepData.marketing"
+        v-model="localValue"
+        value="Marketing"
         id="marketing"
         name="marketing"
         label="Marketing"
@@ -94,7 +99,8 @@ const touchValidate = () => {
             : 'border-neutral-300'
         "
         :onTouch="touchValidate"
-        v-model="stepData.other"
+        v-model="localValue"
+        value="Other"
         id="other"
         name="other"
         label="Other"

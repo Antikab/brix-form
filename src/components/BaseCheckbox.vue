@@ -1,7 +1,16 @@
 <script setup>
-const model = defineModel({ type: Boolean, default: false })
+import { computed } from 'vue'
 
 const props = defineProps({
+  modelValue: {
+    type: Array,
+    default: () => [],
+    required: true
+  },
+  value: {
+    type: String,
+    required: true
+  },
   id: {
     type: String,
     required: true
@@ -14,10 +23,6 @@ const props = defineProps({
   name: {
     type: String,
     required: true
-  },
-  trueValue: {
-    type: String,
-    required: false
   },
   label: {
     type: String,
@@ -40,24 +45,42 @@ const props = defineProps({
   }
 })
 
-// Обработчик изменения чекбокса
-const handleInputChange = () => props.onTouch()
+const emit = defineEmits(['update:modelValue'])
+
+const isChecked = computed(() => props.modelValue.includes(props.value))
+
+const toggleValue = (event) => {
+  props.onTouch()
+  const updated = [...props.modelValue]
+  if (event.target.checked) {
+    if (!updated.includes(props.value)) {
+      updated.push(props.value)
+    }
+  } else {
+    const index = updated.indexOf(props.value)
+    if (index !== -1) {
+      updated.splice(index, 1)
+    }
+  }
+  emit('update:modelValue', updated)
+}
 </script>
 
 <template>
   <label :for="id" class="relative cursor-pointer">
     <input
-      @change="handleInputChange"
-      v-model="model"
+      @change="toggleValue"
       :id="id"
       :type="type"
       :name="name"
+      :value="value"
+      :checked="isChecked"
       class="hidden peer"
     />
     <div
       :class="[
         classContainer,
-        'w-[215px] h-[105px] lg:w-[284px] lg:h-[114px] flex flex-wrap items-center gap-x-[23px] p-4  border-2 rounded-2xl transition-all  peer-checked:border-primary-color-1 peer-checked:shadow-4-10 shadow-2-6'
+        'w-[215px] h-[105px] lg:w-[284px] lg:h-[114px] flex flex-nowrap items-center gap-x-[23px] p-4  border-2 rounded-2xl transition-all  peer-checked:border-primary-color-1 peer-checked:shadow-4-10 shadow-2-6'
       ]"
     >
       <div class="size-[66px] bg-primary-color-1/15 rounded-full flex items-center justify-center">

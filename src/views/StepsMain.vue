@@ -14,12 +14,14 @@ import StepProgressBar from '@/components/StepProgressBar.vue'
 const currentStep = ref(1)
 
 // Данные формы
-const formData = reactive({})
+const formData = reactive({
+  selectedServices: []
+})
 
 // Динамическая валидация для каждого шага
 const checkboxOneChecked = helpers.withMessage(
   'Выберите хотя бы одну услугу',
-  () => formData.development || formData.webDesign || formData.marketing || formData.other
+  () => formData.selectedServices.length > 0
 )
 
 // Кастомный валидатор для телефона +7 (999) 999-99-99
@@ -98,7 +100,7 @@ const handleSubmit = async () => {
     >
       <StepProgressBar :currentStep="currentStep" :totalSteps="4" />
       <Step_1 v-if="currentStep === 1" v-model="formData" :v="v$" />
-      <Step_2 v-if="currentStep === 2" v-model="formData" :v="v$" />
+      <Step_2 v-if="currentStep === 2" v-model="formData.selectedServices" :v="v$" />
       <Step_3 v-if="currentStep === 3" v-model="formData" :v="v$" />
       <Step_4 v-if="currentStep === 4" v-model="formData" />
     </div>
