@@ -1,5 +1,5 @@
 <script setup>
-const model = defineModel({ type: String, default: '' })
+const model = defineModel({ type: Boolean, default: false })
 
 const props = defineProps({
   id: {
@@ -52,8 +52,6 @@ const handleInputChange = () => props.onTouch()
       :id="id"
       :type="type"
       :name="name"
-      :true-value="trueValue"
-      false-value=""
       class="hidden peer"
     />
     <div

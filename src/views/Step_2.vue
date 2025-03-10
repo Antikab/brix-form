@@ -25,9 +25,14 @@ const touchValidate = () => {
     <div class="flex flex-col lg:items-start justify-center gap-2">
       <h2 class="title-24-700 text-neutral-800">Our services</h2>
       <p class="w-[250px] lg:w-fit title-18-400_167">
-        Please select which service you are interested in.
+        <!-- Please select which service you are interested in. -->
       </p>
     </div>
+    <p>stepData.development: {{ stepData.development }}</p>
+    <p>stepData.webDesign: {{ stepData.webDesign }}</p>
+    <p>stepData.marketing: {{ stepData.marketing }}</p>
+    <p>stepData.other: {{ stepData.other }}</p>
+
     <div
       class="flex flex-col gap-3.5 lg:flex-row lg:flex-wrap lg:justify-center lg:gap-7 lg:-mx-3.5 relative mt-7 lg:mt-10"
     >
@@ -50,7 +55,6 @@ const touchValidate = () => {
             : 'border-neutral-300'
         "
         :onTouch="touchValidate"
-        trueValue="Development"
         v-model="stepData.development"
         id="development"
         name="development"
@@ -64,7 +68,6 @@ const touchValidate = () => {
             : 'border-neutral-300'
         "
         :onTouch="touchValidate"
-        trueValue="Web Design"
         v-model="stepData.webDesign"
         id="webDesign"
         name="webDesign"
@@ -79,7 +82,6 @@ const touchValidate = () => {
         "
         :onTouch="touchValidate"
         v-model="stepData.marketing"
-        trueValue="Marketing"
         id="marketing"
         name="marketing"
         label="Marketing"
@@ -93,7 +95,6 @@ const touchValidate = () => {
         "
         :onTouch="touchValidate"
         v-model="stepData.other"
-        trueValue="Other"
         id="other"
         name="other"
         label="Other"
