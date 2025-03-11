@@ -38,7 +38,6 @@ const options = [
         Please select which service you are interested in.
       </p>
     </div>
-    <p class="text-red-500">проверка: {{ modelValue }}</p>
     <div
       class="flex flex-col gap-3.5 lg:flex-row lg:flex-wrap lg:justify-center lg:gap-7 lg:-mx-3.5 relative mt-7 lg:mt-10"
     >
