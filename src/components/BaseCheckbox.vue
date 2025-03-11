@@ -1,6 +1,6 @@
 <script setup>
 const modelValue = defineModel({ type: Array, default: () => [] })
-const props = defineProps({
+defineProps({
   value: {
     type: String,
     required: true
@@ -38,30 +38,17 @@ const props = defineProps({
     required: false
   }
 })
-const check = (event) => {
-  props.onTouch()
-  let updated = [...modelValue.value]
-  if (event.target.checked) {
-    if (!updated.includes(props.value)) {
-      updated.push(props.value)
-    }
-  } else {
-    updated = updated.filter((item) => item !== props.value)
-  }
-  modelValue.value = updated
-}
 </script>
 
 <template>
   <label :for="id" class="relative cursor-pointer">
     <input
-      @change="check"
       :id="id"
       :type="type"
       :name="name"
-      :value="value"
-      :checked="modelValue.includes(value)"
       class="hidden peer"
+      :value="value"
+      v-model="modelValue"
     />
     <div
       :class="[
