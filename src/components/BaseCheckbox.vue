@@ -1,12 +1,6 @@
 <script setup>
-import { computed } from 'vue'
-
+const modelValue = defineModel({ type: Array, default: () => [] })
 const props = defineProps({
-  modelValue: {
-    type: Array,
-    default: () => [],
-    required: true
-  },
   value: {
     type: String,
     required: true
@@ -44,37 +38,29 @@ const props = defineProps({
     required: false
   }
 })
-
-const emit = defineEmits(['update:modelValue'])
-
-const isChecked = computed(() => props.modelValue.includes(props.value))
-
-const toggleValue = (event) => {
+const check = (event) => {
   props.onTouch()
-  const updated = [...props.modelValue]
+  let updated = [...modelValue.value]
   if (event.target.checked) {
     if (!updated.includes(props.value)) {
       updated.push(props.value)
     }
   } else {
-    const index = updated.indexOf(props.value)
-    if (index !== -1) {
-      updated.splice(index, 1)
-    }
+    updated = updated.filter((item) => item !== props.value)
   }
-  emit('update:modelValue', updated)
+  modelValue.value = updated
 }
 </script>
 
 <template>
   <label :for="id" class="relative cursor-pointer">
     <input
-      @change="toggleValue"
+      @change="check"
       :id="id"
       :type="type"
       :name="name"
       :value="value"
-      :checked="isChecked"
+      :checked="modelValue.includes(value)"
       class="hidden peer"
     />
     <div

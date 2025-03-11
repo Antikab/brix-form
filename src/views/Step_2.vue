@@ -1,5 +1,4 @@
 <script setup>
-import { computed } from 'vue'
 import BaseCheckbox from '@/components/BaseCheckbox.vue'
 
 import IconDev from '/image/IconDev.svg'
@@ -7,24 +6,28 @@ import IconWeb from '/image/IconWeb.svg'
 import IconMar from '/image/IconMar.svg'
 import IconOth from '/image/IconOth.svg'
 
+const modelValue = defineModel({ type: Array, default: () => [] })
+
 const props = defineProps({
-  modelValue: {
-    type: Array,
-    default: () => []
-  },
   v: Object // Валидация
-})
-
-const emit = defineEmits(['update:modelValue'])
-
-const localValue = computed({
-  get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val)
 })
 
 const touchValidate = () => {
   props.v.checkboxValidate.$touch()
 }
+
+const options = [
+  {
+    value: 'Development',
+    label: 'Development',
+    icon: IconDev,
+    id: 'dev',
+    name: 'development'
+  },
+  { value: 'Web Design', label: 'Web Design', icon: IconWeb, id: 'web', name: 'webDesign' },
+  { value: 'Marketing', label: 'Marketing', icon: IconMar, id: 'mar', name: 'marketing' },
+  { value: 'Other', label: 'Other', icon: IconOth, id: 'oth', name: 'other' }
+]
 </script>
 
 <template>
@@ -52,59 +55,20 @@ const touchValidate = () => {
         </div>
       </Transition>
       <BaseCheckbox
+        v-for="option in options"
+        :key="option.id"
         :classContainer="
           v.checkboxValidate.$error
             ? 'border-primary-error shadow-4-10-error'
             : 'border-neutral-300'
         "
         :onTouch="touchValidate"
-        v-model="localValue"
-        value="Development"
-        id="development"
-        name="development"
-        label="Development"
-        :icon="IconDev"
-      />
-      <BaseCheckbox
-        :classContainer="
-          v.checkboxValidate.$error
-            ? 'border-primary-error shadow-4-10-error'
-            : 'border-neutral-300'
-        "
-        :onTouch="touchValidate"
-        v-model="localValue"
-        value="Web Design"
-        id="webDesign"
-        name="webDesign"
-        label="Web Design"
-        :icon="IconWeb"
-      />
-      <BaseCheckbox
-        :classContainer="
-          v.checkboxValidate.$error
-            ? 'border-primary-error shadow-4-10-error'
-            : 'border-neutral-300'
-        "
-        v-model="localValue"
-        value="Marketing"
-        id="marketing"
-        name="marketing"
-        label="Marketing"
-        :icon="IconMar"
-      />
-      <BaseCheckbox
-        :classContainer="
-          v.checkboxValidate.$error
-            ? 'border-primary-error shadow-4-10-error'
-            : 'border-neutral-300'
-        "
-        :onTouch="touchValidate"
-        v-model="localValue"
-        value="Other"
-        id="other"
-        name="other"
-        label="Other"
-        :icon="IconOth"
+        :value="option.value"
+        :id="option.id"
+        :name="option.name"
+        :label="option.label"
+        :icon="option.icon"
+        v-model="modelValue"
       />
     </div>
   </div>

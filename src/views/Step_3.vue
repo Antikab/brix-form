@@ -5,6 +5,13 @@ const stepData = defineModel({
   type: Object,
   default: () => ({})
 })
+
+const budgetOptions = [
+  { id: '5-10', value: '$5.000 - $10.000', label: '$5.000 - $10.000' },
+  { id: '10-20', value: '$10.000 - $20.000', label: '$10.000 - $20.000' },
+  { id: '20-50', value: '$20.000 - $50.000', label: '$20.000 - $50.000' },
+  { id: '50', value: '$50.000 +', label: '$50.000 +' }
+]
 </script>
 
 <template>
@@ -19,34 +26,12 @@ const stepData = defineModel({
       class="flex flex-col gap-3.5 lg:flex-row lg:flex-wrap lg:justify-center lg:gap-7 lg:-mx-3.5 relative mt-7 lg:mt-10"
     >
       <BaseRadio
+        v-for="budgetOption in budgetOptions"
+        :key="budgetOption.id"
         v-model="stepData.projectBudget"
-        value="$5.000 - $10.000"
-        id="5.000-10.000"
-        label="$5.000 - $10.000"
-        name="radio-group"
-        classContainer="border-neutral-300"
-      />
-      <BaseRadio
-        v-model="stepData.projectBudget"
-        id="10.000-20.000"
-        value="$10.000 - $20.000"
-        label="$10.000 - $20.000"
-        name="radio-group"
-        classContainer="border-neutral-300"
-      />
-      <BaseRadio
-        v-model="stepData.projectBudget"
-        value="$20.000 - $50.000"
-        id="20.000-50.000"
-        label="$20.000 - $50.000"
-        name="radio-group"
-        classContainer="border-neutral-300"
-      />
-      <BaseRadio
-        v-model="stepData.projectBudget"
-        value="$50.000 +"
-        id="50.000+"
-        label="$50.000 +"
+        :value="budgetOption.value"
+        :id="budgetOption.id"
+        :label="budgetOption.label"
         name="radio-group"
         classContainer="border-neutral-300"
       />
