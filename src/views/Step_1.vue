@@ -41,8 +41,7 @@ const inputFields = [
     type: 'tel',
     autocomplete: 'tel',
     icon: IconPhone,
-    name: 'phone',
-    mask: '+7 (###) ###-##-##'
+    name: 'phone'
   },
   {
     id: 'company',
@@ -82,9 +81,32 @@ const inputFields = [
           "
         >
           <InputItem
+            v-if="inputField.id === 'phone'"
             v-model="stepData[inputField.name]"
             :error="v[inputField.name].$errors"
-            :srcImage="inputField.IconName"
+            :srcImage="inputField.icon"
+            :contentClass="[
+              v[inputField.name].$error
+                ? 'group-focus-within:text-primary-error'
+                : 'group-focus-within:text-indigo-500',
+              'text-neutral-500 w-[23px] h-[28px]'
+            ]"
+            class="group outline-none"
+            :placeholder="inputField.placeholder"
+            :label="inputField.label"
+            :name="inputField.name"
+            :id="inputField.id"
+            :type="inputField.type"
+            :autocomplete="inputField.autocomplete"
+            :aria-label="`${inputField.label} input field`"
+            v-mask="'+7 (###) ###-##-##'"
+          />
+
+          <InputItem
+            v-else
+            v-model="stepData[inputField.name]"
+            :error="v[inputField.name].$errors"
+            :srcImage="inputField.icon"
             :contentClass="[
               v[inputField.name].$error
                 ? 'group-focus-within:text-primary-error'
